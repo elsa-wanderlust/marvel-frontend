@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// IMPORT COMPONENTS
+// IMPORT COMPONENT
 import CharacterDisplay from "../components/CharacterDisplay";
 
 const Home = () => {

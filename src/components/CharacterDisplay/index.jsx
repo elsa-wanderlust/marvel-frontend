@@ -11,7 +11,7 @@ const CharacterDisplay = ({ data }) => {
   }
   return (
     <div className="one-character">
-      <Link to={`/comics/${_id}`}>
+      <Link to={`/comics/${_id}`} state={{ name: name }}>
         <p>{name}</p>
         {description && <p>{description}</p>}
         {imgCharacter ? (
