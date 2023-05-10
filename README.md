@@ -12,6 +12,10 @@
 - when maping use id instead of index
 - footer
 
+## SEARCH
+
+- handles search with a space (either in btw letters or after letters)
+
 ## HOME PAGE
 
 - homepage: BEEF has no image, his fault!

@@ -1,8 +1,12 @@
 import "./pagination.css";
 
-const Pagination = ({ thisPageNumber, currentPageNum, setcurrentPageNum }) => {
+const Pagination = ({ thisPageNumber, currentPageNum, setCurrentPageNum }) => {
   return (
-    <button onClick={setCurrentPageNum(thisPageNumber)}>
+    <button
+      onClick={() => {
+        setCurrentPageNum(thisPageNumber);
+      }}
+    >
       {thisPageNumber}
     </button>
   );
