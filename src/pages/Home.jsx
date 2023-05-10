@@ -9,7 +9,7 @@ import Filters from "../components/Filters";
 import Pagination from "../components/Pagination";
 import handleFilters from "../utils/handleFilters";
 
-const Home = ({ whichPage }) => {
+const Home = () => {
   // DECLARE STATES
   const [isLoading, setIsLoading] = useState(true); // stores the state of our axios request
   const [data, setData] = useState(""); // stores the data receive
@@ -60,6 +60,7 @@ const Home = ({ whichPage }) => {
                 thisPageNumber={elem}
                 currentPageNum={currentPageNum}
                 setCurrentPageNum={setCurrentPageNum}
+                numberOfPages={numberOfPages}
               />
             );
           })}

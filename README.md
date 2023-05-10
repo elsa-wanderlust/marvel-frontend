@@ -31,6 +31,7 @@
 ### ALL COMICS DISPLAY
 
 picture that dont exist (same for the comics of one characters)
+Annihilation: Silver Surfer (2006) #1 - description is messed up
 
 ## BETTER
 

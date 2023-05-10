@@ -20,7 +20,7 @@ function App() {
     <Router>
       <Header whichPage={whichPage} setWhitePage={setWhichPage} />
       <Routes>
-        <Route path="/" element={<Home whichPage={whichPage} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/comics" element={<Comics />} />
         <Route path="/comics/:id" element={<ComicsOfCharacter />} />
         <Route path="/favorites" element={<Favorites />} />
