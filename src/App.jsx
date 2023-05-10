@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // IMPORT PAGES
 import Home from "./pages/Home";
-import Comic from "./pages/Comic";
 import Comics from "./pages/Comics";
 import ComicsOfCharacter from "./pages/ComicsOfCharacters";
 import Favorites from "./pages/Favorites";
@@ -15,12 +14,13 @@ import Favorites from "./pages/Favorites";
 import Header from "./components/Header";
 
 function App() {
+  // DECLARE STATE
+  const [whichPage, setWhichPage] = useState("characters"); // will either be characters, comics or favorites
   return (
     <Router>
-      <Header />
+      <Header whichPage={whichPage} setWhitePage={setWhichPage} />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/comic/:id" element={<Comic />} />
+        <Route path="/" element={<Home whichPage={whichPage} />} />
         <Route path="/comics" element={<Comics />} />
         <Route path="/comics/:id" element={<ComicsOfCharacter />} />
         <Route path="/favorites" element={<Favorites />} />

@@ -22,7 +22,6 @@ const ComicsOfCharacter = () => {
         const response = await axios.get(`http://localhost:3001/comics/${id}`);
         setData(response.data);
         setIsLoading(false);
-        console.log(response.data);
       } catch (error) {
         console.log({ error: error.message });
       }

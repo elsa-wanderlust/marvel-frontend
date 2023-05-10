@@ -2,7 +2,7 @@ import "./characterDisplay.css";
 import { Link } from "react-router-dom";
 
 const CharacterDisplay = ({ data }) => {
-  const { thumbnail, _id, name, description } = data;
+  const { thumbnail, _id, name, description, comics } = data;
 
   // returns the file path of the character image if there is one in the Marvel API
   let imgCharacter = "";
