@@ -16,7 +16,7 @@ import Header from "./components/Header";
 function App() {
   // DECLARE STATE
   const [whichPage, setWhichPage] = useState("characters"); // will either be characters, comics or favorites
-  const [token, setToken] = useState(""); // to know if the user is connected (and to which account)
+  const [token, setToken] = useState(""); // to know if the user is connected (and to which account) why if in cookies?
 
   return (
     <Router>

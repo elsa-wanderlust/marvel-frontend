@@ -2,11 +2,9 @@ import "./comicDisplay.css";
 import axios from "axios";
 import { useState } from "react";
 
-const ComicDisplay = ({ data }) => {
+const ComicDisplay = ({ data, isFav, favComicsDB, setFavComicsDB }) => {
   const { thumbnail, _id, title, description } = data;
   const token = "AhdDXrrl_gjVwdTPtEQvMPghYpyl-tgh"; // TBD to change
-  // DECLARE STATE
-  const [DBresponse, setDBresponse] = useState(""); // stores the data receive
 
   // returns the file path of the comic's image if there is one in the Marvel API
   let imgComic = "";
@@ -47,7 +45,9 @@ const ComicDisplay = ({ data }) => {
           "Content-Type": "multipart/form-data",
         }
       );
-      setDBresponse(response);
+      let favComicsDBCopy = [...favComicsDB];
+      favComicsDBCopy.push(response.data);
+      setFavComicsDB(favComicsDBCopy);
     } catch (error) {
       console.log(error.message);
     }
@@ -63,7 +63,13 @@ const ComicDisplay = ({ data }) => {
           "Content-Type": "multipart/form-data",
         }
       );
-      setDBresponse(response);
+      let favComicsDBCopy = [];
+      for (let i = 0; i < favComicsDB.length; i++) {
+        if (favComicsDB[i] !== _id) {
+          favComicsDBCopy.push(favComicsDB[i]);
+        }
+      }
+      setFavComicsDB(favComicsDBCopy);
     } catch (error) {
       console.log(error.message);
     }
@@ -71,7 +77,7 @@ const ComicDisplay = ({ data }) => {
 
   return (
     <div className="each-comic">
-      <p>{title}</p>
+      <p className={isFav ? "favorite" : "notfav"}>{title}</p>
       <img src={imgComic} alt={`poster of ${title}`} />
       <p>{description}</p>
       <button onClick={addNewFav}>Add to favorites Comics Loc </button>

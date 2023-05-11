@@ -5,15 +5,16 @@ import axios from "axios";
 
 // IMPORT COMPONENTS and FUNCTION
 import ComicDisplay from "../components/ComicDisplay";
+import AllComicsDisplay from "../components/AllComicsDisplay";
 import Filters from "../components/Filters";
 import PagesByTen from "../components/PagesByTen";
 import handleFilters from "../utils/handleFilters";
 import handleNumberOfPages from "../utils/handleNumberOfPages";
 
-const Comics = () => {
+const Home = () => {
   // DECLARE STATES
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState("");
+  const [isLoading, setIsLoading] = useState(true); // stores the state of our axios request
+  const [data, setData] = useState(""); // stores the data receive
   const [search, setSearch] = useState(""); // stores what's in the search field
   const [limit, setLimit] = useState(100); // results per page (max 100)
   const [numberOfPages, setNumberOfPages] = useState([]); // see info in "../utils/handleNumberOfPages"
@@ -21,11 +22,6 @@ const Comics = () => {
   const [currentPageNum, setCurrentPageNum] = useState(1); // current page number on display
   // CALL FUNCTION TO HANDLE ALL FILTERS
   const filtersQueries = handleFilters(limit, currentPageNum, search);
-  console.log(filtersQueries);
-
-  // if connected - we'll get that from the cookies
-  const userID = "645d041c64dddc72cee4c4f5";
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,7 +41,7 @@ const Comics = () => {
   return (
     <div>
       {isLoading ? (
-        <p>page is loading...</p>
+        <p>page is loading ...</p>
       ) : (
         <div>
           <Filters
@@ -71,9 +67,7 @@ const Comics = () => {
           })}
           {data.results.length > 0 ? (
             <div>
-              {data.results.map((elem) => {
-                return <ComicDisplay key={elem._id} data={elem} />;
-              })}
+              <AllComicsDisplay data={data} />
             </div>
           ) : (
             <p>There are no results matching your request</p>
@@ -84,4 +78,4 @@ const Comics = () => {
   );
 };
 
-export default Comics;
+export default Home;

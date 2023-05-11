@@ -5,3 +5,7 @@
 .each-comic {
   border: 1px lightseagreen solid;
 }
+
+.each-comic .favorite {
+  color: magenta;
+}
