@@ -4,6 +4,7 @@
 
 ### GENERAL
 
+- pagination in URL
 - declare a variable for the Marvel color in the CSS
 - state in app which the page to update the button in menu and the field search
 - whats the point of the use effet is there is no update in the state, then, there shouldnt be a re-render anyways... but might have it when filtering later on :)

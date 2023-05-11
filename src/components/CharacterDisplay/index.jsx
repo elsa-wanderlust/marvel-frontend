@@ -1,41 +1,36 @@
 import "./characterDisplay.css";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 const CharacterDisplay = ({ data }) => {
-  const { thumbnail, _id, name, description, comics } = data;
-  // DECLARE STATE
-  const [favCharacter, setFavCharacter] = useState({});
+  const { thumbnail, _id, name, description } = data;
 
-  // returns the file path of the character image if there is one in the Marvel API
+  // returns the file path of the character's image if there is one in the Marvel API
   let imgCharacter = "";
   if (thumbnail.path.slice(-19) !== "image_not_available") {
     imgCharacter = `${thumbnail.path}/portrait_small.${thumbnail.extension}`;
   }
-  // DECLARE FUNCTION - add to favorites
-  const handleAddFav = () => {
-    let copyfavCharacter = { ...favCharacter };
+
+  // DECLARE FUNCTIONS
+  // add to favorites
+  const addNewFav = () => {
+    const currentFavStored = localStorage.getItem("FavCharacters");
+    let currentFav = currentFavStored ? JSON.parse(currentFavStored) : [];
     const newFav = { _id, name, description, imgCharacter };
-    copyfavCharacter.push(newFav);
+    currentFav.push(newFav);
+    localStorage.setItem("FavCharacters", JSON.stringify(currentFav));
   };
-
-  // console.log(localStorage.getItem("favCharacters"));
-
-  useEffect(() => {
-    if (localStorage.getItem("favCharacters") === null) {
-      localStorage.setItem("favCharacters", JSON.stringify([]));
+  // remove from favorites
+  const removeFromFav = () => {
+    const currentFav = JSON.parse(localStorage.getItem("FavCharacters"));
+    console.log(currentFav);
+    let newFavTab = [];
+    for (let i = 0; i < currentFav.length; i++) {
+      if (currentFav[i]._id !== _id) {
+        newFavTab.push(currentFav[i]);
+      }
     }
-    // else {
-    //   const currentFavCharactersStr = localStorage.getItem("favCharacters");
-    //   const currentFavCharactersArr = JSON.parse(currentFavCharactersStr);
-    //   const newFavCharactersArr = currentFavCharactersArr.push(favCharacter);
-    //   const newFavCharactersStr = JSON.stringify(newFavCharactersArr);
-    //   localStorage.setItem(
-    //     "favCharacters",
-    //     JSON.stringify(newFavCharactersStr)
-    //   );
-    // }
-  }, [favCharacter]);
+    localStorage.setItem("FavCharacters", JSON.stringify(newFavTab));
+  };
 
   return (
     <div className="one-character">
@@ -48,7 +43,8 @@ const CharacterDisplay = ({ data }) => {
           <p>no picture available</p>
         )}
       </Link>
-      <button onClick={handleAddFav}>Add to favorites Characters</button>
+      <button onClick={addNewFav}>Add to favorites Characters</button>
+      <button onClick={removeFromFav}>Remove from favorites Characters</button>
     </div>
   );
 };

@@ -4,8 +4,7 @@ import axios from "axios";
 // read the 'README' for the pagination system and terminology
 
 // IMPORT COMPONENTS and FUNCTION
-// import CharacterDisplay from "../components/CharacterDisplay";
-import AllCharacterDisplay from "../components/AllCharacterDisplay";
+import CharacterDisplay from "../components/CharacterDisplay";
 import Filters from "../components/Filters";
 import PagesByTen from "../components/PagesByTen";
 import handleFilters from "../utils/handleFilters";
@@ -65,8 +64,7 @@ const Home = () => {
               />
             );
           })}
-          <AllCharacterDisplay data={data.result} />
-          {/* {data.results.length > 0 ? (
+          {data.results.length > 0 ? (
             <div>
               {data.results.map((elem) => {
                 return <CharacterDisplay key={elem._id} data={elem} />;
@@ -74,7 +72,7 @@ const Home = () => {
             </div>
           ) : (
             <p>There are no results matching your request</p>
-          )} */}
+          )}
         </div>
       )}
     </div>
