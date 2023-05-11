@@ -50,6 +50,7 @@ const Home = () => {
             limit={limit}
             setLimit={setLimit}
             setCurrentPageNum={setCurrentPageNum}
+            setCurrentPagesByTen={setCurrentPagesByTen}
           />
           {numberOfPages.map((elem, index) => {
             return (

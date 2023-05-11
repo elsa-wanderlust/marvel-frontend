@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+// read the 'README' for the pagination system and terminology
+
 // IMPORT COMPONENTS and FUNCTION
 import ComicDisplay from "../components/ComicDisplay";
 import Filters from "../components/Filters";
-// import Pagination from "../components/Pagination";
+import PagesByTen from "../components/PagesByTen";
 import handleFilters from "../utils/handleFilters";
+import handleNumberOfPages from "../utils/handleNumberOfPages";
 
 const Comics = () => {
   // DECLARE STATES
@@ -13,10 +16,12 @@ const Comics = () => {
   const [data, setData] = useState("");
   const [search, setSearch] = useState(""); // stores what's in the search field
   const [limit, setLimit] = useState(100); // results per page (max 100)
-  const [numberOfPages, setNumberOfPages] = useState([]); // depending of data and limit, number of pages available
+  const [numberOfPages, setNumberOfPages] = useState([]); // see info in "../utils/handleNumberOfPages"
+  const [currentPagesByTen, setCurrentPagesByTen] = useState(1);
   const [currentPageNum, setCurrentPageNum] = useState(1); // current page number on display
   // CALL FUNCTION TO HANDLE ALL FILTERS
   const filtersQueries = handleFilters(limit, currentPageNum, search);
+  console.log(filtersQueries);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,18 +31,13 @@ const Comics = () => {
         );
         setData(response.data);
         setIsLoading(false);
-        const numberOfPagesTotal = Math.ceil(response.data.count / limit);
-        const pageTab = [];
-        for (let i = 1; i <= numberOfPagesTotal; i++) {
-          pageTab.push(i);
-        }
-        setNumberOfPages(pageTab);
+        setNumberOfPages(handleNumberOfPages(response.data.count, limit));
       } catch (error) {
         console.log({ error: error.message });
       }
     };
     fetchData();
-  }, [search, limit, currentPageNum]);
+  }, [search, limit, currentPageNum, currentPagesByTen]);
 
   return (
     <div>
@@ -50,17 +50,22 @@ const Comics = () => {
             setSearch={setSearch}
             limit={limit}
             setLimit={setLimit}
+            setCurrentPageNum={setCurrentPageNum}
+            setCurrentPagesByTen={setCurrentPagesByTen}
           />
-          {/* {numberOfPages.map((elem, index) => {
+          {numberOfPages.map((elem, index) => {
             return (
-              <Pagination
+              <PagesByTen
                 key={index}
-                thisPageNumber={elem}
+                thatPagesbyTen={index + 1}
+                currentPagesByTen={currentPagesByTen}
+                setCurrentPagesByTen={setCurrentPagesByTen}
+                thatPagesbyTenContent={elem}
                 currentPageNum={currentPageNum}
                 setCurrentPageNum={setCurrentPageNum}
               />
             );
-          })} */}
+          })}
           {data.results.length > 0 ? (
             <div>
               {data.results.map((elem) => {
