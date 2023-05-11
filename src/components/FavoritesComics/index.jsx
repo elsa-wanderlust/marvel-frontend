@@ -1,5 +1,6 @@
 import "./favoritesComics.css";
 
+// IF NOT CONNECTED
 const FavoritesComics = () => {
   const favStored = localStorage.getItem("FavComics");
   let favArray = favStored ? JSON.parse(favStored) : "";

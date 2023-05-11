@@ -23,6 +23,9 @@ const Comics = () => {
   const filtersQueries = handleFilters(limit, currentPageNum, search);
   console.log(filtersQueries);
 
+  // if connected - we'll get that from the cookies
+  const userID = "645d041c64dddc72cee4c4f5";
+
   useEffect(() => {
     const fetchData = async () => {
       try {
