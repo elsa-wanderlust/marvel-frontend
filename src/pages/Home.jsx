@@ -6,8 +6,9 @@ import axios from "axios";
 // IMPORT COMPONENTS and FUNCTION
 import CharacterDisplay from "../components/CharacterDisplay";
 import Filters from "../components/Filters";
-import Pagination from "../components/Pagination";
+import PagesByTen from "../components/PagesByTen";
 import handleFilters from "../utils/handleFilters";
+import handleNumberOfPages from "../utils/handleNumberOfPages";
 
 const Home = () => {
   // DECLARE STATES
@@ -15,7 +16,8 @@ const Home = () => {
   const [data, setData] = useState(""); // stores the data receive
   const [search, setSearch] = useState(""); // stores what's in the search field
   const [limit, setLimit] = useState(100); // results per page (max 100)
-  const [numberOfPages, setNumberOfPages] = useState([]); // depending of data and limit, number of pages available
+  const [numberOfPages, setNumberOfPages] = useState([]); // see info in "../utils/handleNumberOfPages"
+  const [currentPagesByTen, setCurrentPagesByTen] = useState(1);
   const [currentPageNum, setCurrentPageNum] = useState(1); // current page number on display
   // CALL FUNCTION TO HANDLE ALL FILTERS
   const filtersQueries = handleFilters(limit, currentPageNum, search);
@@ -28,12 +30,7 @@ const Home = () => {
         );
         setData(response.data);
         setIsLoading(false);
-        const numberOfPagesTotal = Math.ceil(response.data.count / limit);
-        const pageTab = [];
-        for (let i = 1; i <= numberOfPagesTotal; i++) {
-          pageTab.push(i);
-        }
-        setNumberOfPages(pageTab);
+        setNumberOfPages(handleNumberOfPages(response.data.count, limit));
       } catch (error) {
         console.log({ error: error.message });
       }
@@ -55,12 +52,14 @@ const Home = () => {
           />
           {numberOfPages.map((elem, index) => {
             return (
-              <Pagination
+              <PagesByTen
                 key={index}
-                thisPageNumber={elem}
+                thisPagesbyTen={index + 1}
+                // currentPagesByTen={currentPagesByTen}
+                // setCurrentPagesByTen={setCurrentPagesByTen}
+                thisPagesbyTenContent={elem}
                 currentPageNum={currentPageNum}
                 setCurrentPageNum={setCurrentPageNum}
-                numberOfPages={numberOfPages}
               />
             );
           })}

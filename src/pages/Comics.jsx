@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// read the 'README' for the pagination system and terminology
-
 // IMPORT COMPONENTS and FUNCTION
 import ComicDisplay from "../components/ComicDisplay";
 import Filters from "../components/Filters";
-import Pagination from "../components/Pagination";
+// import Pagination from "../components/Pagination";
 import handleFilters from "../utils/handleFilters";
 
 const Comics = () => {
@@ -53,7 +51,7 @@ const Comics = () => {
             limit={limit}
             setLimit={setLimit}
           />
-          {numberOfPages.map((elem, index) => {
+          {/* {numberOfPages.map((elem, index) => {
             return (
               <Pagination
                 key={index}
@@ -62,7 +60,7 @@ const Comics = () => {
                 setCurrentPageNum={setCurrentPageNum}
               />
             );
-          })}
+          })} */}
           {data.results.length > 0 ? (
             <div>
               {data.results.map((elem) => {
