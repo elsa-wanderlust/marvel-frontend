@@ -16,6 +16,8 @@ import Header from "./components/Header";
 function App() {
   // DECLARE STATE
   const [whichPage, setWhichPage] = useState("characters"); // will either be characters, comics or favorites
+  const [favCharacter, setFavCharacter] = useState({});
+
   return (
     <Router>
       <Header whichPage={whichPage} setWhitePage={setWhichPage} />

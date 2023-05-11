@@ -4,7 +4,8 @@ import axios from "axios";
 // read the 'README' for the pagination system and terminology
 
 // IMPORT COMPONENTS and FUNCTION
-import CharacterDisplay from "../components/CharacterDisplay";
+// import CharacterDisplay from "../components/CharacterDisplay";
+import AllCharacterDisplay from "../components/AllCharacterDisplay";
 import Filters from "../components/Filters";
 import PagesByTen from "../components/PagesByTen";
 import handleFilters from "../utils/handleFilters";
@@ -21,7 +22,6 @@ const Home = () => {
   const [currentPageNum, setCurrentPageNum] = useState(1); // current page number on display
   // CALL FUNCTION TO HANDLE ALL FILTERS
   const filtersQueries = handleFilters(limit, currentPageNum, search);
-  console.log(filtersQueries);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -65,7 +65,8 @@ const Home = () => {
               />
             );
           })}
-          {data.results.length > 0 ? (
+          <AllCharacterDisplay data={data.result} />
+          {/* {data.results.length > 0 ? (
             <div>
               {data.results.map((elem) => {
                 return <CharacterDisplay key={elem._id} data={elem} />;
@@ -73,7 +74,7 @@ const Home = () => {
             </div>
           ) : (
             <p>There are no results matching your request</p>
-          )}
+          )} */}
         </div>
       )}
     </div>
