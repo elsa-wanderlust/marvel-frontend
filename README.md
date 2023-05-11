@@ -12,6 +12,7 @@
 - console.log({ error: error.message }) for both FE and BE?
 - when maping use id instead of index
 - footer
+- simplify codes
 
 ## SEARCH
 
@@ -33,6 +34,10 @@
 
 picture that dont exist (same for the comics of one characters)
 Annihilation: Silver Surfer (2006) #1 - description is messed up
+
+## USER
+
+add avatar option
 
 ## BETTER
 

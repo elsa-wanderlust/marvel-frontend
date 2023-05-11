@@ -1,7 +1,13 @@
 import "./comicDisplay.css";
+import axios from "axios";
+import { useState } from "react";
 
 const ComicDisplay = ({ data }) => {
   const { thumbnail, _id, title, description } = data;
+  const token = "AhdDXrrl_gjVwdTPtEQvMPghYpyl-tgh"; // TBD to change
+  // DECLARE STATE
+  const [DBresponse, setDBresponse] = useState(""); // stores the data receive
+
   // returns the file path of the comic's image if there is one in the Marvel API
   let imgComic = "";
   if (thumbnail.path.slice(-19) !== "image_not_available") {
@@ -9,7 +15,7 @@ const ComicDisplay = ({ data }) => {
   }
 
   // DECLARE FUNCTIONS
-  // add to favorites
+  // add to favorites locally
   const addNewFav = () => {
     const currentFavStored = localStorage.getItem("FavComics");
     let currentFav = currentFavStored ? JSON.parse(currentFavStored) : [];
@@ -17,7 +23,7 @@ const ComicDisplay = ({ data }) => {
     currentFav.push(newFav);
     localStorage.setItem("FavComics", JSON.stringify(currentFav));
   };
-  // remove from favorites
+  // remove from favorites locally
   const removeFromFav = () => {
     const currentFav = JSON.parse(localStorage.getItem("FavComics"));
     console.log(currentFav);
@@ -30,13 +36,48 @@ const ComicDisplay = ({ data }) => {
     localStorage.setItem("FavComics", JSON.stringify(newFavTab));
   };
 
+  // add to favorites DB
+  const addNewFavDB = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/favorite/comics`,
+        { marvelId: _id, name: title, img: imgComic, description: description },
+        {
+          headers: { authorization: `Bearer ${token}` },
+          "Content-Type": "multipart/form-data",
+        }
+      );
+      setDBresponse(response);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // remove from favorites DB
+  const removeFromFavDB = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/favorite/comics/${_id}`,
+        {
+          headers: { authorization: `Bearer ${token}` },
+          "Content-Type": "multipart/form-data",
+        }
+      );
+      setDBresponse(response);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="each-comic">
       <p>{title}</p>
       <img src={imgComic} alt={`poster of ${title}`} />
       <p>{description}</p>
-      <button onClick={addNewFav}>Add to favorites Comics</button>
-      <button onClick={removeFromFav}>Remove from favorites Comics</button>
+      <button onClick={addNewFav}>Add to favorites Comics Loc </button>
+      <button onClick={removeFromFav}>Remove from favorites Comics Loc</button>
+      <button onClick={addNewFavDB}>Add to favorites Comics DB </button>
+      <button onClick={removeFromFavDB}>Remove from favorites Comics DB</button>
     </div>
   );
 };

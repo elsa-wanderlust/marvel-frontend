@@ -1,5 +1,13 @@
+import FavoritesCharacters from "../components/FavoritesCharacters";
+import FavoritesComics from "../components/FavoritesComics";
+
 const Favorites = () => {
-  return <div>my favorites characters and comics</div>;
+  return (
+    <div>
+      <FavoritesComics />
+      <FavoritesCharacters />
+    </div>
+  );
 };
 
 export default Favorites;
