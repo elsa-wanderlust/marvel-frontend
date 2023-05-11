@@ -1,14 +1,12 @@
-const PagesNumber = ({ thisPageNumber, currentPageNum, setCurrentPageNum }) => {
+const PagesNumber = ({ thatPageNumber, currentPageNum, setCurrentPageNum }) => {
   return (
-    <div>
-      <button
-        onClick={() => {
-          setCurrentPageNum(thisPageNumber);
-        }}
-      >
-        {thisPageNumber}
-      </button>
-    </div>
+    <button
+      onClick={() => {
+        setCurrentPageNum(thatPageNumber);
+      }}
+    >
+      {thatPageNumber}
+    </button>
   );
 };
 

@@ -4,43 +4,47 @@ import { useState } from "react";
 import PagesNumber from "../PageNumbers";
 
 const PagesByTen = ({
-  thisPagesbyTen,
-  currentPageNum,
-  setCurrentPageNum,
-  thisPagesbyTenContent,
+  thatPagesbyTen,
   currentPagesByTen,
   setCurrentPagesByTen,
+  thatPagesbyTenContent,
+  currentPageNum,
+  setCurrentPageNum,
 }) => {
-  // const [currentPagesByTen, setCurrentPagesByTen] = useState(1);
-  // const handleOnClick = () => {
-  //   setCurrentPagesByTen(thisPagesbyTen);
-  // };
-  console.log(thisPagesbyTen);
+  // name for the 'pageByTen' button
+  let pagesByTenName = "";
+  if (thatPagesbyTenContent.length === 1) {
+    pagesByTenName = `get to page ${thatPagesbyTenContent[0]}`;
+  } else {
+    pagesByTenName = `get to pages ${thatPagesbyTenContent[0]} to ${
+      thatPagesbyTenContent[thatPagesbyTenContent.length - 1]
+    }`;
+  }
+  // when clicking on pageByTen button:
+  // - this button will be selected (for CSS use only)
+  // - we want the first page number of that group to be selected
+  const handlePagesByTenClick = () => {
+    setCurrentPagesByTen(thatPagesbyTen);
+    setCurrentPageNum(thatPagesbyTenContent[0]);
+  };
+
   return (
     <div
       className={
-        currentPagesByTen === thisPagesbyTen
+        currentPagesByTen === thatPagesbyTen
           ? "button-selected"
           : "button-not-selected"
       }
     >
-      <button
-        onClick={() => {
-          setCurrentPagesByTen(thisPagesbyTen);
-        }}
-      >
-        pages Number {thisPagesbyTen}
-      </button>
-      {thisPagesbyTenContent.map((elem, index) => {
+      <button onClick={handlePagesByTenClick}>{pagesByTenName}</button>
+      {thatPagesbyTenContent.map((elem, index) => {
         return (
-          <div onClick>
-            <PagesNumber
-              key={elem}
-              thisPageNumber={elem}
-              currentPageNum={currentPageNum}
-              setCurrentPageNum={setCurrentPageNum}
-            />
-          </div>
+          <PagesNumber
+            key={`${elem}-${index}`}
+            thatPageNumber={elem}
+            currentPageNum={currentPageNum}
+            setCurrentPageNum={setCurrentPageNum}
+          />
         );
       })}
     </div>

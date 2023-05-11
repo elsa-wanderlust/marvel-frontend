@@ -21,7 +21,7 @@ const Home = () => {
   const [currentPageNum, setCurrentPageNum] = useState(1); // current page number on display
   // CALL FUNCTION TO HANDLE ALL FILTERS
   const filtersQueries = handleFilters(limit, currentPageNum, search);
-
+  console.log(filtersQueries);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,7 +36,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, [search, limit, currentPageNum]);
+  }, [search, limit, currentPageNum, currentPagesByTen]);
 
   return (
     <div>
@@ -49,15 +49,16 @@ const Home = () => {
             setSearch={setSearch}
             limit={limit}
             setLimit={setLimit}
+            setCurrentPageNum={setCurrentPageNum}
           />
           {numberOfPages.map((elem, index) => {
             return (
               <PagesByTen
                 key={index}
-                thisPagesbyTen={index + 1}
-                // currentPagesByTen={currentPagesByTen}
-                // setCurrentPagesByTen={setCurrentPagesByTen}
-                thisPagesbyTenContent={elem}
+                thatPagesbyTen={index + 1}
+                currentPagesByTen={currentPagesByTen}
+                setCurrentPagesByTen={setCurrentPagesByTen}
+                thatPagesbyTenContent={elem}
                 currentPageNum={currentPageNum}
                 setCurrentPageNum={setCurrentPageNum}
               />

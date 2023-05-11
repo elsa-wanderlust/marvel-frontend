@@ -3,5 +3,9 @@
 }
 
 .button-not-selected {
-  border: green solid 2px;
+  border: red solid 2px;
+}
+
+.button-selected button div {
+  display: flex;
 }
