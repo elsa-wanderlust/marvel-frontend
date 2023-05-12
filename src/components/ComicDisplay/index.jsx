@@ -38,7 +38,7 @@ const ComicDisplay = ({ data, isFav, favComicsDB, setFavComicsDB }) => {
   const addNewFavDB = async () => {
     try {
       const response = await axios.post(
-        `https://site--marvel--7lpgx9xk8rh5.code.run/favorite/comics`,
+        `https://site--marvel-back--7lpgx9xk8rh5.code.run/favorite/comics`,
         { marvelId: _id, name: title, img: imgComic, description: description },
         {
           headers: { authorization: `Bearer ${token}` },
@@ -57,7 +57,7 @@ const ComicDisplay = ({ data, isFav, favComicsDB, setFavComicsDB }) => {
   const removeFromFavDB = async () => {
     try {
       const response = await axios.delete(
-        `https://site--marvel--7lpgx9xk8rh5.code.run/favorite/comics/${_id}`,
+        `https://site--marvel-back--7lpgx9xk8rh5.code.run/favorite/comics/${_id}`,
         {
           headers: { authorization: `Bearer ${token}` },
           "Content-Type": "multipart/form-data",

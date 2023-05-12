@@ -20,7 +20,7 @@ const ComicsOfCharacter = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--marvel--7lpgx9xk8rh5.code.run/comics/${id}`
+          `https://site--marvel-back--7lpgx9xk8rh5.code.run/comics/${id}`
         );
         setData(response.data);
         setIsLoading(false);
