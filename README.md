@@ -1,5 +1,9 @@
 # TO DO
 
+description.replace(/&#39;S/g, "42")
+&#39; ===> '
+&ndash; ===> ...
+
 ## MANDATORY
 
 ### GENERAL
