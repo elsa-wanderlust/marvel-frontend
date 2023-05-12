@@ -25,7 +25,8 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/characters${filtersQueries}`
+          `https://site--marvel--7lpgx9xk8rh5.code.run/characters${filtersQueries}`
+          // `http://localhost:3001/characters${filtersQueries}`
         );
         setData(response.data);
         setIsLoading(false);
