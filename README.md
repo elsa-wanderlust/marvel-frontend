@@ -1,20 +1,27 @@
-# TO DO
+# ++ NOTES ++
 
-description.replace(/&#39;S/g, "42")
-&#39; ===> '
-&ndash; ===> ...
+## TO DO
 
-## MANDATORY
+- replace all routes with NF routes
+- update list of missing routes
 
-### GENERAL
+## MISC
+
+ICONS - Iconify
+PEXEL, UNSPLASH, FREEPIX - images DB
+
+# ++ MANDATORY ++
+
+## CSS
+
+- declare a variable for the Marvel color in the CSS
+- deal with police
+
+## GENERAL
 
 - pagination in URL
-- declare a variable for the Marvel color in the CSS
 - state in app which the page to update the button in menu and the field search
-- whats the point of the use effet is there is no update in the state, then, there shouldnt be a re-render anyways... but might have it when filtering later on :)
-- deal with police
 - console.log({ error: error.message }) for both FE and BE?
-- when maping use id instead of index
 - footer
 - simplify codes
 
@@ -26,29 +33,36 @@ description.replace(/&#39;S/g, "42")
 
 - homepage: BEEF has no image, his fault!
 
-### CHARACTER DISPLAY
+## CHARACTER DISPLAY
 
 - in CharacterDisplay if comics.length === 0 > disable the link and have an extra message showing (eg: Alexa Mendez, Akemi and Anne Marie Hoag)
 
 ## COMIC FOR ONE CHARACTERS
 
-- return to all characters
+- offer a button to return to all characters
 
-### ALL COMICS DISPLAY
+## ALL COMICS DISPLAY
 
-picture that dont exist (same for the comics of one characters)
-Annihilation: Silver Surfer (2006) #1 - description is messed up
+- what to do when the picture that doesnt exist (same in the page for the comics of one characters)  
+  eg: Annihilation: Silver Surfer (2006) #1 - description is messed up
 
-## USER
+# ++ OPTIONAL ++
 
-add avatar option
-
-## BETTER
+## GENERAL
 
 - have logo in the tab
-- Header comp > replace logo for relative path
-- sort comics (both all comics and comic of one characters) by data or alphabetical
-- choose how many to display per page
+
+## SIGN UP
+
+- add avatar option
+
+## DESCRIPTION
+
+description.replace(/&#39;S/g, "42") //
+&#39; ===> '
+&ndash; ===> ...
+
+# ++ ACTUAL READ ME NOTES ++
 
 A LITTLE BIT OF PAGES VOCAB - in both the Home (characters) and Comics pages:
 
