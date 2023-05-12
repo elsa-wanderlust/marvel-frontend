@@ -1,4 +1,4 @@
-import "./pagesByTen.css";
+import "./PagesByTen.css";
 import { useState } from "react";
 
 import PagesNumber from "../PageNumbers";
