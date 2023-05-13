@@ -38,7 +38,7 @@ const Comics = ({ setModalVisible, setWhichModal }) => {
   }, [search, limit, currentPageNum, currentPagesByTen]);
 
   return (
-    <div>
+    <div className="container">
       {isLoading ? (
         <p>page is loading ...</p>
       ) : (

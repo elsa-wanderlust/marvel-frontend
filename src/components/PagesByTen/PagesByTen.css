@@ -1,11 +1,49 @@
-.button-selected {
-  border: green solid 2px;
+.page-system {
   display: flex;
 }
 
-.button-not-selected {
-  border: red solid 2px;
+.page-limit {
   display: flex;
+  align-items: center;
+}
+
+.page-limit > div {
+  display: flex;
+  justify-content: center;
+  font: 20px;
+  gap: 15px;
+}
+
+/* TO SIMPLIFY */
+.page-limit p:nth-child(1) {
+  border-right: 0.5px solid black;
+  padding-right: 20px;
+}
+.page-limit p:nth-child(2) {
+  border-right: 0.5px solid black;
+  padding-right: 20px;
+}
+.page-limit p:nth-child(3) {
+  border-right: 0.5px solid black;
+  padding-right: 20px;
+}
+
+.page-limit .selected {
+  text-decoration: underline;
+}
+
+.button-selected {
+  /* border: green solid 2px; */
+  display: flex;
+  gap: 3px;
+  padding: 0 35px;
+}
+
+.button-selected button {
+  width: 35px;
+}
+
+.button-not-selected {
   display: none;
 }
 
@@ -14,7 +52,8 @@
 }
 
 .hidden-visibility {
-  background-color: red;
+  visibility: hidden;
+  /* background-color: red; */
 }
 
 .page-selected {

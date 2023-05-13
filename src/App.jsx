@@ -39,6 +39,7 @@ function App() {
             <Home
               setModalVisible={setModalVisible}
               setWhichModal={setWhichModal}
+              whichPage={whichPage}
             />
           }
         />
@@ -48,6 +49,7 @@ function App() {
             <Comics
               setModalVisible={setModalVisible}
               setWhichModal={setWhichModal}
+              whichPage={whichPage}
             />
           }
         />

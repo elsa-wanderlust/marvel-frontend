@@ -1,0 +1,15 @@
+.filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.filter input {
+  height: 80%;
+  width: 70%;
+  border-radius: 20px;
+  border: none;
+  text-align: center;
+  font-size: 30px;
+}

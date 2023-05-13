@@ -12,17 +12,9 @@ const PagesByTen = ({
   currentPageNum,
   setCurrentPageNum,
   numberOfPages,
+  limit,
+  setLimit,
 }) => {
-  // name for the 'pageByTen' button
-  let pagesByTenName = "";
-  if (thatPagesbyTenContent.length === 1) {
-    pagesByTenName = `get to page ${thatPagesbyTenContent[0]}`;
-  } else {
-    pagesByTenName = `get to pages ${thatPagesbyTenContent[0]} to ${
-      thatPagesbyTenContent[thatPagesbyTenContent.length - 1]
-    }`;
-  }
-
   // when clicking on pageByTen button:
   // - this button will be selected (for CSS use only)
   // - we want the first page number of that group to be selected

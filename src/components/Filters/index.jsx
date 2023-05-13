@@ -7,6 +7,7 @@ const Filters = ({
   setLimit,
   setCurrentPageNum,
   setCurrentPagesByTen,
+  whichPage,
 }) => {
   // DECLARE FUNCTIONS TO HANDLE CHANGES
   // SEARCH CHANGE: because we consider that if a user starts a new search, the request will be for the whole DB (no skip value)
@@ -25,22 +26,20 @@ const Filters = ({
   };
 
   return (
-    <div>
-      <form>
-        <input
-          type="text"
-          placeholder="enter the characters/marvel"
-          onChange={handleSearchChange}
-          value={search}
-        />
-        <input
-          type="text"
-          placeholder="number of result per page - max 100"
-          onChange={handleLimitChange}
-          value={limit}
-        />
-      </form>
-    </div>
+    <form className="filter container">
+      <input
+        type="text"
+        placeholder={`search for ${whichPage}`}
+        onChange={handleSearchChange}
+        value={search}
+      />
+      {/* <input
+        type="text"
+        placeholder="number of result per page - max 100"
+        onChange={handleLimitChange}
+        value={limit}
+      /> */}
+    </form>
   );
 };
 
