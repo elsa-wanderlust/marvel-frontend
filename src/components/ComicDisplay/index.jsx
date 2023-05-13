@@ -108,7 +108,6 @@ const ComicDisplay = ({
     // if no token AND it's in the fav already => remove from local storage
     if (!token && isFav) {
       const currentFav = JSON.parse(localStorage.getItem("FavComics"));
-      console.log(currentFav);
       let newFavTab = [];
       for (let i = 0; i < currentFav.length; i++) {
         if (currentFav[i]._id !== _id) {

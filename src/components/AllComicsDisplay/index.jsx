@@ -13,13 +13,13 @@ const AllComicsDisplay = ({
   setModalVisible,
   setWhichModal,
 }) => {
-  // DECLARE STATES
-  const [isLoading, setIsLoading] = useState(false);
+  // DECLARE STATES and VARIABLE
+  const [isLoading, setIsLoading] = useState(true);
   const [favComicsDB, setFavComicsDB] = useState([]);
   const token = Cookies.get("tokenMarvel");
 
   // FUNCTIONS TO GET ALL THE FAVORITE COMICS
-  // in the DB if there is a token
+  // in the DB if there is a token = returns MarvelID only
   useEffect(() => {
     if (token) {
       const fetchFavoriteComics = async () => {
@@ -31,7 +31,7 @@ const AllComicsDisplay = ({
             }
           );
           setFavComicsDB(response.data);
-          console.log(response.data);
+          setIsLoading(false);
         } catch (error) {
           console.log(error.message);
         }
@@ -39,7 +39,7 @@ const AllComicsDisplay = ({
       fetchFavoriteComics();
     }
   }, []);
-  // if no token, it checks the local storage
+  // if no token, it checks the local storage = returns MarvelID only
   let favComicsLocal = [];
   if (!token) {
     const favStored = localStorage.getItem("FavComics");
@@ -51,7 +51,7 @@ const AllComicsDisplay = ({
 
   return (
     <div>
-      {isLoading ? (
+      {isLoading && token ? (
         <p>page is loading...</p>
       ) : (
         <div>
