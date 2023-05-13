@@ -2,8 +2,10 @@
 
 ## TO DO
 
+- update
 - replace all routes with NF routes
 - update list of missing routes
+- footer
 
 ## MISC
 

@@ -12,21 +12,40 @@ import Favorites from "./pages/Favorites";
 
 // IMPORT COMPONENT(S)
 import Header from "./components/Header";
+import Modal from "./components/Modal";
 
 function App() {
   // DECLARE STATE
   const [whichPage, setWhichPage] = useState("characters"); // will either be characters, comics or favorites
-  const [token, setToken] = useState(""); // to know if the user is connected (and to which account) why if in cookies?
+  const [modalVisible, setModalVisible] = useState(false); // for the login & signup modals
+  const [whichModal, setWhichModal] = useState(""); // either "" or "login" or "signup"
+  const [token, setToken] = useState("");
 
   return (
     <Router>
-      <Header whichPage={whichPage} setWhitePage={setWhichPage} />
+      <Header
+        whichPage={whichPage}
+        setWhichPage={setWhichPage}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        whichModal={whichModal}
+        setWhichModal={setWhichModal}
+        setToken={setToken}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/comics" element={<Comics />} />
         <Route path="/comics/:id" element={<ComicsOfCharacter />} />
         <Route path="/favorites" element={<Favorites />} />
       </Routes>
+      {modalVisible && (
+        <Modal
+          setModalVisible={setModalVisible}
+          setWhichModal={setWhichModal}
+          whichModal={whichModal}
+          setToken={setToken}
+        />
+      )}
     </Router>
   );
 }

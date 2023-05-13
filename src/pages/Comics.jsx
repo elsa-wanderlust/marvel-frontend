@@ -18,8 +18,8 @@ const Home = () => {
   const [search, setSearch] = useState(""); // stores what's in the search field
   const [limit, setLimit] = useState(100); // results per page (max 100)
   const [numberOfPages, setNumberOfPages] = useState([]); // see info in "../utils/handleNumberOfPages"
-  const [currentPagesByTen, setCurrentPagesByTen] = useState(1);
-  const [currentPageNum, setCurrentPageNum] = useState(1); // current page number on display
+  const [currentPagesByTen, setCurrentPagesByTen] = useState(0); // pagesByTen is based on index of numberOfPages
+  const [currentPageNum, setCurrentPageNum] = useState(1); // pagesNumver is based on index+1 of pagesByTen (pages num dont start at 0)
   // CALL FUNCTION TO HANDLE ALL FILTERS
   const filtersQueries = handleFilters(limit, currentPageNum, search);
   useEffect(() => {
@@ -56,12 +56,14 @@ const Home = () => {
             return (
               <PagesByTen
                 key={index}
-                thatPagesbyTen={index + 1}
+                thatPagesbyTen={index}
+                thatPagesbyTenContent={elem}
+                totalNumPagesByTen={numberOfPages.length}
                 currentPagesByTen={currentPagesByTen}
                 setCurrentPagesByTen={setCurrentPagesByTen}
-                thatPagesbyTenContent={elem}
                 currentPageNum={currentPageNum}
                 setCurrentPageNum={setCurrentPageNum}
+                numberOfPages={numberOfPages}
               />
             );
           })}

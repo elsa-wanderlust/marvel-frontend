@@ -17,7 +17,7 @@ const AllComicsDisplay = ({ data }) => {
     const fetchFavoriteComics = async () => {
       try {
         const response = await axios.post(
-          `https://site--marvel-back--7lpgx9xk8rh5.code.run/favorite/comics/idMarvel`,
+          `https://site--marvel-back--7lpgx9xk8rh5.code.run/favorite/comics`,
           {
             id: userId,
           },

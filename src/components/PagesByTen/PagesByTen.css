@@ -1,11 +1,22 @@
 .button-selected {
   border: green solid 2px;
+  display: flex;
 }
 
 .button-not-selected {
   border: red solid 2px;
+  display: flex;
+  display: none;
 }
 
 .button-selected button div {
   display: flex;
+}
+
+.hidden-visibility {
+  background-color: red;
+}
+
+.page-selected {
+  background-color: brown;
 }
