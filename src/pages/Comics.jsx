@@ -11,12 +11,12 @@ import PagesByTen from "../components/PagesByTen";
 import handleFilters from "../utils/handleFilters";
 import handleNumberOfPages from "../utils/handleNumberOfPages";
 
-const Home = () => {
+const Comics = ({ search, setSearch, limit, setLimit }) => {
   // DECLARE STATES
   const [isLoading, setIsLoading] = useState(true); // stores the state of our axios request
   const [data, setData] = useState(""); // stores the data receive
-  const [search, setSearch] = useState(""); // stores what's in the search field
-  const [limit, setLimit] = useState(100); // results per page (max 100)
+  // const [search, setSearch] = useState(""); // stores what's in the search field
+  // const [limit, setLimit] = useState(100); // results per page (max 100)
   const [numberOfPages, setNumberOfPages] = useState([]); // see info in "../utils/handleNumberOfPages"
   const [currentPagesByTen, setCurrentPagesByTen] = useState(0); // pagesByTen is based on index of numberOfPages
   const [currentPageNum, setCurrentPageNum] = useState(1); // pagesNumver is based on index+1 of pagesByTen (pages num dont start at 0)
@@ -80,4 +80,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Comics;

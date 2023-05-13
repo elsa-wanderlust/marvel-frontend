@@ -1,6 +1,7 @@
 import "./allComicsDisplay.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 // IMPORT COMPONENTS
 import ComicDisplay from "../ComicDisplay";
@@ -11,12 +12,14 @@ const AllComicsDisplay = ({ data }) => {
   const [favComicsDB, setFavComicsDB] = useState([]);
   // if connected - we'll get that from the cookies
   const userId = "645d041c64dddc72cee4c4f5"; // TBD to change
-  const token = "AhdDXrrl_gjVwdTPtEQvMPghYpyl-tgh"; // TBD to change
+  const token = Cookies.get("tokenMarvel");
+  console.log(token);
 
+  // get all the favorites comics for that user in the DB
   useEffect(() => {
     const fetchFavoriteComics = async () => {
       try {
-        const response = await axios.post(
+        const response = await axios.get(
           `https://site--marvel-back--7lpgx9xk8rh5.code.run/favorite/comics`,
           {
             id: userId,
