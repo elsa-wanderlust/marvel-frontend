@@ -4,13 +4,13 @@ import axios from "axios";
 // read the 'README' for the pagination system and terminology
 
 // IMPORT COMPONENTS and FUNCTION
-import CharacterDisplay from "../components/CharacterDisplay";
+import AllCharactersDisplay from "../components/AllCharactersDisplay";
 import Filters from "../components/Filters";
 import PagesByTen from "../components/PagesByTen";
 import handleFilters from "../utils/handleFilters";
 import handleNumberOfPages from "../utils/handleNumberOfPages";
 
-const Home = () => {
+const Home = ({ setModalVisible, setWhichModal }) => {
   // DECLARE STATES
   const [isLoading, setIsLoading] = useState(true); // stores the state of our axios request
   const [data, setData] = useState(""); // stores the data receive
@@ -56,19 +56,23 @@ const Home = () => {
               <PagesByTen
                 key={index}
                 thatPagesbyTen={index}
+                thatPagesbyTenContent={elem}
+                totalNumPagesByTen={numberOfPages.length}
                 currentPagesByTen={currentPagesByTen}
                 setCurrentPagesByTen={setCurrentPagesByTen}
-                thatPagesbyTenContent={elem}
                 currentPageNum={currentPageNum}
                 setCurrentPageNum={setCurrentPageNum}
+                numberOfPages={numberOfPages}
               />
             );
           })}
           {data.results.length > 0 ? (
             <div>
-              {data.results.map((elem) => {
-                return <CharacterDisplay key={elem._id} data={elem} />;
-              })}
+              <AllCharactersDisplay
+                data={data}
+                setModalVisible={setModalVisible}
+                setWhichModal={setWhichModal}
+              />
             </div>
           ) : (
             <p>There are no results matching your request</p>

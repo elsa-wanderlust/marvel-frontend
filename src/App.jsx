@@ -33,7 +33,15 @@ function App() {
         setToken={setToken}
       />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              setModalVisible={setModalVisible}
+              setWhichModal={setWhichModal}
+            />
+          }
+        />
         <Route
           path="/comics"
           element={

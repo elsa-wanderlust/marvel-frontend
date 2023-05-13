@@ -1,12 +1,12 @@
-import "./allComicsDisplay.css";
+import "./allCharactersDisplay.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 // IMPORT COMPONENTS
-import ComicDisplay from "../ComicDisplay";
+import CharacterDisplay from "../CharacterDisplay";
 
-const AllComicsDisplay = ({
+const AllCharactersDisplay = ({
   data,
   offeredLogin,
   setOfferedLogin,
@@ -15,37 +15,37 @@ const AllComicsDisplay = ({
 }) => {
   // DECLARE STATES and VARIABLE
   const [isLoading, setIsLoading] = useState(true);
-  const [favComicsDB, setFavComicsDB] = useState([]);
+  const [favCharactersDB, setFavCharactersDB] = useState([]);
   const token = Cookies.get("tokenMarvel");
 
-  // FUNCTIONS TO GET ALL THE FAVORITE COMICS
+  // FUNCTIONS TO GET ALL THE FAVORITE CHARACTERS
   // in the DB if there is a token = returns MarvelID only
   useEffect(() => {
     if (token) {
-      const fetchFavoriteComics = async () => {
+      const fetchFavoriteCharacters = async () => {
         try {
           const response = await axios.get(
-            `https://site--marvel-back--7lpgx9xk8rh5.code.run/favorite/comics`,
+            `https://site--marvel-back--7lpgx9xk8rh5.code.run/favorite/characters`,
             {
               headers: { authorization: `Bearer ${token}` },
             }
           );
-          setFavComicsDB(response.data);
+          setFavCharactersDB(response.data);
           setIsLoading(false);
         } catch (error) {
           console.log(error.message);
         }
       };
-      fetchFavoriteComics();
+      fetchFavoriteCharacters();
     }
   }, []);
   // if no token, it checks the local storage = returns MarvelID only
-  let favComicsLocal = [];
+  let favCharactersLocal = [];
   if (!token) {
-    const favStored = localStorage.getItem("FavComics");
+    const favStored = localStorage.getItem("FavCharacters");
     const favArray = favStored ? JSON.parse(favStored) : "";
     for (let i = 0; i < favArray.length; i++) {
-      favComicsLocal.push(favArray[i]._id);
+      favCharactersLocal.push(favArray[i]._id);
     }
   }
 
@@ -57,24 +57,24 @@ const AllComicsDisplay = ({
         <div>
           {data.results.map((elem) => {
             let isFav = false;
-            // if token: isFav === true, if the comicsId is in 'favComicsDB'
+            // if token: isFav === true, if the charactersId is in 'favCharactersDB'
             if (token) {
-              if (favComicsDB.indexOf(elem._id) !== -1) {
+              if (favCharactersDB.indexOf(elem._id) !== -1) {
                 isFav = true;
               }
-              // if no token: isFav === true, if the comicsId is in 'favComicsLocal'
+              // if no token: isFav === true, if the charactersId is in 'favCharactersLocal'
             } else {
-              if (favComicsLocal.indexOf(elem._id) !== -1) {
+              if (favCharactersLocal.indexOf(elem._id) !== -1) {
                 isFav = true;
               }
             }
             return (
-              <ComicDisplay
+              <CharacterDisplay
                 key={elem._id}
                 data={elem}
                 isFav={isFav}
-                favComicsDB={favComicsDB}
-                setFavComicsDB={setFavComicsDB}
+                favCharactersDB={favCharactersDB}
+                setFavCharactersDB={setFavCharactersDB}
                 setModalVisible={setModalVisible}
                 setWhichModal={setWhichModal}
               />
@@ -86,4 +86,4 @@ const AllComicsDisplay = ({
   );
 };
 
-export default AllComicsDisplay;
+export default AllCharactersDisplay;

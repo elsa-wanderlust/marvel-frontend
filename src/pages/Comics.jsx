@@ -10,12 +10,7 @@ import PagesByTen from "../components/PagesByTen";
 import handleFilters from "../utils/handleFilters";
 import handleNumberOfPages from "../utils/handleNumberOfPages";
 
-const Comics = ({
-  offeredLogin,
-  setOfferedLogin,
-  setModalVisible,
-  setWhichModal,
-}) => {
+const Comics = ({ setModalVisible, setWhichModal }) => {
   // DECLARE STATES
   const [isLoading, setIsLoading] = useState(true); // stores the state of our axios request
   const [data, setData] = useState(""); // stores the data receive
@@ -41,6 +36,7 @@ const Comics = ({
     };
     fetchData();
   }, [search, limit, currentPageNum, currentPagesByTen]);
+
   return (
     <div>
       {isLoading ? (
@@ -74,8 +70,6 @@ const Comics = ({
             <div>
               <AllComicsDisplay
                 data={data}
-                offeredLogin={offeredLogin}
-                setOfferedLogin={setOfferedLogin}
                 setModalVisible={setModalVisible}
                 setWhichModal={setWhichModal}
               />
