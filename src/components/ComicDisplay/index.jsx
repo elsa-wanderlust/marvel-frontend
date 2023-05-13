@@ -3,9 +3,18 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { Icon } from "@iconify/react";
 
-const ComicDisplay = ({ data, isFav, favComicsDB, setFavComicsDB }) => {
+const ComicDisplay = ({
+  data,
+  isFav,
+  favComicsDB,
+  setFavComicsDB,
+  setModalVisible,
+  setWhichModal,
+}) => {
   const { thumbnail, _id, title, description } = data;
   const token = Cookies.get("tokenMarvel");
+  const favStoredComics = localStorage.getItem("FavComics");
+  const favStoredCharacters = localStorage.getItem("Characters");
 
   // returns the file path of the comic's image if there is one in the Marvel API
   let imgComic = "";
@@ -79,6 +88,11 @@ const ComicDisplay = ({ data, isFav, favComicsDB, setFavComicsDB }) => {
       } catch (error) {
         console.log(error.message);
       }
+    }
+    // if no token AND it's not in the fav already AND that no Comics/Charac are locally saved => opens signup Modal
+    if (!token && !isFav && !favStoredComics && !favStoredCharacters) {
+      setModalVisible(true);
+      setWhichModal("login");
     }
     // if no token AND it's not in the fav already => store locally
     if (!token && !isFav) {

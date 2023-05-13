@@ -6,7 +6,13 @@ import Cookies from "js-cookie";
 // IMPORT COMPONENTS
 import ComicDisplay from "../ComicDisplay";
 
-const AllComicsDisplay = ({ data }) => {
+const AllComicsDisplay = ({
+  data,
+  offeredLogin,
+  setOfferedLogin,
+  setModalVisible,
+  setWhichModal,
+}) => {
   // DECLARE STATES
   const [isLoading, setIsLoading] = useState(false);
   const [favComicsDB, setFavComicsDB] = useState([]);
@@ -69,6 +75,10 @@ const AllComicsDisplay = ({ data }) => {
                 isFav={isFav}
                 favComicsDB={favComicsDB}
                 setFavComicsDB={setFavComicsDB}
+                offeredLogin={offeredLogin}
+                setOfferedLogin={setOfferedLogin}
+                setModalVisible={setModalVisible}
+                setWhichModal={setWhichModal}
               />
             );
           })}

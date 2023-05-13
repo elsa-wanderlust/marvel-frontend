@@ -12,6 +12,16 @@ const LoginForm = ({ setModalVisible, setWhichModal, setToken }) => {
 
   // DECLARE VARIABLE(S)
   const navigate = useNavigate();
+  // see if either fav Comics OR characters have only one item saved
+  const favStoredComics = localStorage.getItem("FavComics");
+  const favStoredCharacters = localStorage.getItem("Characters");
+  let sumOfLengths = 0;
+  if (favStoredCharacters) {
+    sumOfLengths = sumOfLengths + JSON.parse(favStoredCharacters).length;
+  }
+  if (favStoredComics) {
+    sumOfLengths = sumOfLengths + JSON.parse(favStoredComics).length;
+  }
 
   // DECLARE FUNCTIONS TO HANDLE CHANGES AND SUBMIT
   const handleEmailChange = (event) => {
@@ -56,6 +66,12 @@ const LoginForm = ({ setModalVisible, setWhichModal, setToken }) => {
       >
         X
       </button>
+      {sumOfLengths === 1 && (
+        <p>
+          we recommend to login so you save your favorites Marvel comics and
+          characters for eternity, AND access them from anywhere in the galaxy !
+        </p>
+      )}
       <h1>Login</h1>
       <form className="form" onSubmit={handleSubmit}>
         <input

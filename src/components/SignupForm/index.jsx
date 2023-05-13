@@ -62,7 +62,7 @@ const SignUpForm = ({ setModalVisible, setWhichModal, setToken }) => {
       >
         X
       </button>
-      <h1>S'inscrire</h1>
+      <h1>Sign up</h1>
       <form className="form" onSubmit={handleSubmit}>
         <input
           type="text"
