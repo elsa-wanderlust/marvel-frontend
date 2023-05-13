@@ -10,32 +10,38 @@ const AllComicsDisplay = ({ data }) => {
   // DECLARE STATES
   const [isLoading, setIsLoading] = useState(false);
   const [favComicsDB, setFavComicsDB] = useState([]);
-  // if connected - we'll get that from the cookies
-  const userId = "645d041c64dddc72cee4c4f5"; // TBD to change
   const token = Cookies.get("tokenMarvel");
-  console.log(token);
 
-  // get all the favorites comics for that user in the DB
+  // FUNCTIONS TO GET ALL THE FAVORITE COMICS
+  // in the DB if there is a token
   useEffect(() => {
-    const fetchFavoriteComics = async () => {
-      try {
-        const response = await axios.get(
-          `https://site--marvel-back--7lpgx9xk8rh5.code.run/favorite/comics`,
-          {
-            id: userId,
-          },
-          {
-            headers: { authorization: `Bearer ${token}` },
-            "Content-Type": "multipart/form-data",
-          }
-        );
-        setFavComicsDB(response.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchFavoriteComics();
+    if (token) {
+      const fetchFavoriteComics = async () => {
+        try {
+          const response = await axios.get(
+            `https://site--marvel-back--7lpgx9xk8rh5.code.run/favorite/comics`,
+            {
+              headers: { authorization: `Bearer ${token}` },
+            }
+          );
+          setFavComicsDB(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      fetchFavoriteComics();
+    }
   }, []);
+  // if no token, it checks the local storage
+  let favComicsLocal = [];
+  if (!token) {
+    const favStored = localStorage.getItem("FavComics");
+    const favArray = favStored ? JSON.parse(favStored) : "";
+    for (let i = 0; i < favArray.length; i++) {
+      favComicsLocal.push(favArray[i]._id);
+    }
+  }
 
   return (
     <div>
@@ -45,8 +51,16 @@ const AllComicsDisplay = ({ data }) => {
         <div>
           {data.results.map((elem) => {
             let isFav = false;
-            if (favComicsDB.indexOf(elem._id) !== -1) {
-              isFav = true;
+            // if token: isFav === true, if the comicsId is in 'favComicsDB'
+            if (token) {
+              if (favComicsDB.indexOf(elem._id) !== -1) {
+                isFav = true;
+              }
+              // if no token: isFav === true, if the comicsId is in 'favComicsLocal'
+            } else {
+              if (favComicsLocal.indexOf(elem._id) !== -1) {
+                isFav = true;
+              }
             }
             return (
               <ComicDisplay
