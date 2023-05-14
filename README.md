@@ -45,3 +45,4 @@ DO NOT CONFUSE with the state "Which Page" which stores which 'main' page is on 
 - offers avatar options at signup
 - once on 'comics to that character page' offer a button to return to all characters
 - add pagination at the bottom of the page, and scrolls up when changed
+- CSS : background, spacing, and favorite display when none
