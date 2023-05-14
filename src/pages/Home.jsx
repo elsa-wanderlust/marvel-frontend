@@ -37,7 +37,7 @@ const Home = ({ setModalVisible, setWhichModal, whichPage }) => {
     fetchData();
   }, [search, limit, currentPageNum, currentPagesByTen]);
 
-  // NUMBER OF RESULTS PER PAGE CHANGE: similarly, it'll change the display of all the results,
+  // NUMBER OF RESULTS PER PAGE CHANGE: it'll change the display of all the results,
   // and the new results will be displayed from page 1
   const handleLimitChange = (num) => {
     setLimit(num);
@@ -67,20 +67,14 @@ const Home = ({ setModalVisible, setWhichModal, whichPage }) => {
             whichPage={whichPage}
           />
           <div>
-            {/* <input
-              type="text"
-              placeholder="number of result per page - max 100"
-              onChange={handleLimitChange}
-              value={limit}
-            /> */}
             {numberOfPages.map((elem, index) => {
               return (
-                <div className="page-system">
+                <div className="page-system" key={index}>
                   <div className="page-limit">
                     {index === currentPagesByTen && (
                       <div>
                         <p
-                          className={limit === 25 && "selected"}
+                          className={limit === 25 ? "selected" : ""}
                           onClick={() => {
                             handleLimitChange(25);
                           }}
@@ -88,7 +82,7 @@ const Home = ({ setModalVisible, setWhichModal, whichPage }) => {
                           25
                         </p>
                         <p
-                          className={limit === 50 && "selected"}
+                          className={limit === 50 ? "selected" : ""}
                           onClick={() => {
                             handleLimitChange(50);
                           }}
@@ -96,7 +90,7 @@ const Home = ({ setModalVisible, setWhichModal, whichPage }) => {
                           50
                         </p>
                         <p
-                          className={limit === 75 && "selected"}
+                          className={limit === 75 ? "selected" : ""}
                           onClick={() => {
                             handleLimitChange(75);
                           }}
@@ -104,7 +98,7 @@ const Home = ({ setModalVisible, setWhichModal, whichPage }) => {
                           75
                         </p>
                         <p
-                          className={limit === 100 && "selected"}
+                          className={limit === 100 ? "selected" : ""}
                           onClick={() => {
                             handleLimitChange(100);
                           }}
@@ -116,7 +110,6 @@ const Home = ({ setModalVisible, setWhichModal, whichPage }) => {
                     )}
                   </div>
                   <PagesByTen
-                    key={index}
                     thatPagesbyTen={index}
                     thatPagesbyTenContent={elem}
                     totalNumPagesByTen={numberOfPages.length}
@@ -134,7 +127,7 @@ const Home = ({ setModalVisible, setWhichModal, whichPage }) => {
           </div>
 
           {data.results.length > 0 ? (
-            <div>
+            <div className="all-results">
               <AllCharactersDisplay
                 data={data}
                 setModalVisible={setModalVisible}

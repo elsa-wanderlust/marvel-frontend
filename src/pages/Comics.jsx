@@ -10,7 +10,7 @@ import PagesByTen from "../components/PagesByTen";
 import handleFilters from "../utils/handleFilters";
 import handleNumberOfPages from "../utils/handleNumberOfPages";
 
-const Comics = ({ setModalVisible, setWhichModal }) => {
+const Comics = ({ setModalVisible, setWhichModal, whichPage }) => {
   // DECLARE STATES
   const [isLoading, setIsLoading] = useState(true); // stores the state of our axios request
   const [data, setData] = useState(""); // stores the data receive
@@ -37,12 +37,20 @@ const Comics = ({ setModalVisible, setWhichModal }) => {
     fetchData();
   }, [search, limit, currentPageNum, currentPagesByTen]);
 
+  // NUMBER OF RESULTS PER PAGE CHANGE: it'll change the display of all the results,
+  // and the new results will be displayed from page 1
+  const handleLimitChange = (num) => {
+    setLimit(num);
+    setCurrentPageNum(1);
+    setCurrentPagesByTen(0);
+  };
+
   return (
-    <div className="container">
+    <div className="whole-page">
       {isLoading ? (
         <p>page is loading ...</p>
       ) : (
-        <div>
+        <div className="container">
           <Filters
             search={search}
             setSearch={setSearch}
@@ -50,22 +58,67 @@ const Comics = ({ setModalVisible, setWhichModal }) => {
             setLimit={setLimit}
             setCurrentPageNum={setCurrentPageNum}
             setCurrentPagesByTen={setCurrentPagesByTen}
+            whichPage={whichPage}
           />
-          {numberOfPages.map((elem, index) => {
-            return (
-              <PagesByTen
-                key={index}
-                thatPagesbyTen={index}
-                thatPagesbyTenContent={elem}
-                totalNumPagesByTen={numberOfPages.length}
-                currentPagesByTen={currentPagesByTen}
-                setCurrentPagesByTen={setCurrentPagesByTen}
-                currentPageNum={currentPageNum}
-                setCurrentPageNum={setCurrentPageNum}
-                numberOfPages={numberOfPages}
-              />
-            );
-          })}
+          <div>
+            {numberOfPages.map((elem, index) => {
+              return (
+                <div className="page-system" key={index}>
+                  <div className="page-limit">
+                    {index === currentPagesByTen && (
+                      <div>
+                        <p
+                          className={limit === 25 ? "selected" : ""}
+                          onClick={() => {
+                            handleLimitChange(25);
+                          }}
+                        >
+                          25
+                        </p>
+                        <p
+                          className={limit === 50 ? "selected" : ""}
+                          onClick={() => {
+                            handleLimitChange(50);
+                          }}
+                        >
+                          50
+                        </p>
+                        <p
+                          className={limit === 75 ? "selected" : ""}
+                          onClick={() => {
+                            handleLimitChange(75);
+                          }}
+                        >
+                          75
+                        </p>
+                        <p
+                          className={limit === 100 ? "selected" : ""}
+                          onClick={() => {
+                            handleLimitChange(100);
+                          }}
+                        >
+                          100
+                        </p>
+                        <span>results per page</span>
+                      </div>
+                    )}
+                  </div>
+                  <PagesByTen
+                    thatPagesbyTen={index}
+                    thatPagesbyTenContent={elem}
+                    totalNumPagesByTen={numberOfPages.length}
+                    currentPagesByTen={currentPagesByTen}
+                    setCurrentPagesByTen={setCurrentPagesByTen}
+                    currentPageNum={currentPageNum}
+                    setCurrentPageNum={setCurrentPageNum}
+                    numberOfPages={numberOfPages}
+                    limit={limit}
+                    setLimit={setLimit}
+                  />
+                </div>
+              );
+            })}
+          </div>
           {data.results.length > 0 ? (
             <div>
               <AllComicsDisplay

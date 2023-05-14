@@ -6,13 +6,7 @@ import Cookies from "js-cookie";
 // IMPORT COMPONENTS
 import CharacterDisplay from "../CharacterDisplay";
 
-const AllCharactersDisplay = ({
-  data,
-  offeredLogin,
-  setOfferedLogin,
-  setModalVisible,
-  setWhichModal,
-}) => {
+const AllCharactersDisplay = ({ data, setModalVisible, setWhichModal }) => {
   // DECLARE STATES and VARIABLE
   const [isLoading, setIsLoading] = useState(true);
   const [favCharactersDB, setFavCharactersDB] = useState([]);
@@ -54,7 +48,7 @@ const AllCharactersDisplay = ({
       {isLoading && token ? (
         <p>page is loading...</p>
       ) : (
-        <div>
+        <div className="all-characters">
           {data.results.map((elem) => {
             let isFav = false;
             // if token: isFav === true, if the charactersId is in 'favCharactersDB'

@@ -14,12 +14,12 @@ const ComicDisplay = ({
   const { thumbnail, _id, title, description } = data;
   const token = Cookies.get("tokenMarvel");
   const favStoredComics = localStorage.getItem("FavComics");
-  const favStoredCharacters = localStorage.getItem("Characters");
+  const favStoredCharacters = localStorage.getItem("FavCharacters");
 
   // returns the file path of the comic's image if there is one in the Marvel API
   let imgComic = "";
   if (thumbnail.path.slice(-19) !== "image_not_available") {
-    imgComic = `${thumbnail.path}/portrait_small.${thumbnail.extension}`;
+    imgComic = `${thumbnail.path}/portrait_medium.${thumbnail.extension}`;
   }
 
   // UPDATE FAV FUNCTION - what happens when clicking on awesome protection shield
@@ -100,20 +100,25 @@ const ComicDisplay = ({
   };
 
   return (
-    <div className="each-comic">
-      <Icon
-        className={isFav ? "favorite comic" : "notfav comic"}
-        icon="mdi:shield-favorite-outline"
-        onClick={updateFav}
-      />
-      <p className={isFav ? "favorite-com" : "notfav"}>{title}</p>
-      {imgComic ? (
-        <img src={imgComic} alt={`poster of ${title}`} />
-      ) : (
-        <p>no picture available</p>
-      )}
-
-      <p>{description}</p>
+    <div className="a-character comic">
+      <div className="a-character-details">
+        <p className="name">{title}</p>
+        <div className="display-img" onClick={updateFav}>
+          {imgComic ? (
+            <img src={imgComic} alt={`image of ${name}`} />
+          ) : (
+            <p className="no-pic">no picture available</p>
+          )}
+          <Icon
+            className={isFav ? "favorite shield" : "notfav shield"}
+            icon="mdi:shield-favorite-outline"
+            width="30"
+            height="30"
+            onClick={updateFav}
+          />
+        </div>
+      </div>
+      <p className="description">{description}</p>
     </div>
   );
 };

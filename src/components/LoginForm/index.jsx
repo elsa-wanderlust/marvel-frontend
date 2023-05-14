@@ -14,7 +14,7 @@ const LoginForm = ({ setModalVisible, setWhichModal, setToken }) => {
   const navigate = useNavigate();
   // see if either fav Comics OR characters have only one item saved
   const favStoredComics = localStorage.getItem("FavComics");
-  const favStoredCharacters = localStorage.getItem("Characters");
+  const favStoredCharacters = localStorage.getItem("FavCharacters");
   let sumOfLengths = 0;
   if (favStoredCharacters) {
     sumOfLengths = sumOfLengths + JSON.parse(favStoredCharacters).length;

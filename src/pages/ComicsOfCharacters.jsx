@@ -14,7 +14,7 @@ const ComicsOfCharacter = () => {
   const { id } = useParams();
   // GET PROPS SENT VIA THE LINK
   const location = useLocation();
-  const { name } = location.state;
+  const { name, description } = location.state;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,12 +37,22 @@ const ComicsOfCharacter = () => {
         <p>page is loading...</p>
       ) : (
         <div className="characters-comics">
-          <p>{`${name} is featured in ${data.comics.length} comic${
-            data.comics.length > 1 ? "s" : ""
-          }`}</p>
-          {data.comics.map((elem) => {
-            return <ComicDisplay key={elem._id} data={elem} />;
-          })}
+          <p>{name}</p>
+          <p>{description}</p>
+          {data.comics.length > 0 ? (
+            <div>
+              <p>
+                {`${name} is featured in ${data.comics.length} comic${
+                  data.comics.length > 1 ? "s" : ""
+                }`}{" "}
+              </p>
+              {data.comics.map((elem) => {
+                return <ComicDisplay key={elem._id} data={elem} />;
+              })}
+            </div>
+          ) : (
+            `${name} has not yet been featured in an comics`
+          )}
         </div>
       )}
     </div>

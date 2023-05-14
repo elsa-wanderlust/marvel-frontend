@@ -1,3 +1,77 @@
-.one-character {
-  border: gold 2px solid;
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+/* display of all results  */
+.all-characters {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* display of one result : image + fav */
+.a-character {
+  background-color: black;
+  border-radius: 20px;
+  height: 250px;
+  width: calc((100% - 90px) / 5);
+  margin-bottom: 10px;
+  padding-top: 20px;
+}
+
+.display-img {
+  position: relative;
+}
+
+.display-img:hover {
+  cursor: pointer;
+}
+
+/* favorite-shield */
+.shield {
+  position: absolute;
+  right: -13px;
+  top: -13px;
+  color: #ed1d24;
+}
+
+.shield.favorite {
+  color: yellow;
+}
+
+/* display of the content of one result  */
+.a-character-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.a-character-details .link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.a-character .name {
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #ed1d24;
+}
+
+.no-pic {
+  font-size: 10px;
+  height: 150px;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+}
+
+.triple-dot {
+  color: #ed1d24;
 }

@@ -1,15 +1,15 @@
-.characters-comics {
-  border: 4px magenta solid;
+.comic .a-character-details {
+  height: 80%;
 }
 
-.each-comic {
-  border: 1px lightseagreen solid;
+.comic p.description {
+  color: red;
+  overflow: scroll;
+  height: 20%;
 }
 
-/* .each-comic .favorite {
-  color: magenta;
-} */
-
-.favorite {
-  color: magenta;
+.a-character.comic {
+  /* border: magenta 2px solid; */
+  height: 300px;
+  padding: 5px;
 }
