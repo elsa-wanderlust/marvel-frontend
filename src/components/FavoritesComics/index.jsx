@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 // IMPORT COMPONENT
-import EachFavorite from "../eachFavorite";
+import EachFavoriteComics from "../EachFavoriteComics";
 
 const FavoritesComics = () => {
   // DECLARE STATES and VARIABLE
@@ -47,35 +47,47 @@ const FavoritesComics = () => {
       ) : (
         <div>
           {token && favComicsDB ? (
-            favComicsDB.map((elem) => {
-              return (
-                <EachFavorite
-                  key={elem._id}
-                  _id={elem._id}
-                  name={elem.title}
-                  description={elem.description}
-                  img={elem.imgComic}
-                  favComicsDB={favComicsDB}
-                  setFavComicsDB={setFavComicsDB}
-                />
-              );
-            })
-          ) : !token && favComicsLocal ? (
-            favComicsLocal.map((elem) => {
-              return (
-                <EachFavorite
-                  key={elem._id}
-                  _id={elem._id}
-                  name={elem.title}
-                  description={elem.description}
-                  img={elem.imgComic}
-                  favComicsDB={favComicsDB}
-                  setFavComicsDB={setFavComicsDB}
-                />
-              );
-            })
+            <div className="fav-category container">
+              <p>My favorite comics</p>
+              <div className="all-fav">
+                {favComicsDB.map((elem) => {
+                  return (
+                    <EachFavoriteComics
+                      key={elem._id}
+                      _id={elem._id}
+                      name={elem.title}
+                      description={elem.description}
+                      img={elem.imgComic}
+                      favComicsDB={favComicsDB}
+                      setFavComicsDB={setFavComicsDB}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          ) : !token && favComicsLocal.length > 0 ? (
+            <div className="fav-category container">
+              <p>My favorite comics</p>
+              <div className="all-fav">
+                {favComicsLocal.map((elem) => {
+                  return (
+                    <EachFavoriteComics
+                      key={elem._id}
+                      _id={elem._id}
+                      name={elem.title}
+                      description={elem.description}
+                      img={elem.imgComic}
+                      favComicsDB={favComicsDB}
+                      setFavComicsDB={setFavComicsDB}
+                    />
+                  );
+                })}
+              </div>
+            </div>
           ) : (
-            <p>it seems you don't have any favorite Comics saved yet</p>
+            <p className="container">
+              it seems you don't have any favorite Comics saved yet
+            </p>
           )}
         </div>
       )}

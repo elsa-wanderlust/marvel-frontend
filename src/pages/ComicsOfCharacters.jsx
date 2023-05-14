@@ -32,23 +32,25 @@ const ComicsOfCharacter = () => {
   }, []);
 
   return (
-    <div>
+    <div className="whole-page">
       {isLoading ? (
         <p>page is loading...</p>
       ) : (
-        <div className="characters-comics">
-          <p>{name}</p>
+        <div className="container characters-comics">
+          <p className="name">{name}</p>
           <p>{description}</p>
           {data.comics.length > 0 ? (
-            <div>
+            <div className="comics">
               <p>
                 {`${name} is featured in ${data.comics.length} comic${
                   data.comics.length > 1 ? "s" : ""
                 }`}{" "}
               </p>
-              {data.comics.map((elem) => {
-                return <ComicDisplay key={elem._id} data={elem} />;
-              })}
+              <div className="each-comic">
+                {data.comics.map((elem) => {
+                  return <ComicDisplay key={elem._id} data={elem} />;
+                })}
+              </div>
             </div>
           ) : (
             `${name} has not yet been featured in an comics`

@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const EachFavorite = ({
+const EachFavoriteComics = ({
   _id,
   name,
   description,
@@ -12,15 +12,16 @@ const EachFavorite = ({
   //   DECLARE VARIABLE
   const token = Cookies.get("tokenMarvel");
 
-  //   DECLARE FUNCTION TO REMOVE FROM FAV
+  // UPDATE FAV FUNCTION - what happens when clicking on awesome protection shield
   const removeFav = async () => {
+    // if token => remove from DB
     if (token) {
       try {
         const response = await axios.delete(
           `https://site--marvel-back--7lpgx9xk8rh5.code.run/favorite/comics/${_id}`,
           {
             headers: { authorization: `Bearer ${token}` },
-            "Content-Type": "multipart/form-data",
+            // "Content-Type": "multipart/form-data",
           }
         );
         let favComicsDBCopy = [];
@@ -34,6 +35,7 @@ const EachFavorite = ({
         console.log(error.message);
       }
     }
+    // if no token => remove from local storage
     if (!token) {
       const currentFav = JSON.parse(localStorage.getItem("FavComics"));
       let newFavTab = [];
@@ -48,15 +50,23 @@ const EachFavorite = ({
       setFavComicsDB(favComicsDBCopy);
     }
   };
-  console.log("here");
   return (
-    <div className="each-favorite">
-      <p>{name}</p>
-      <img src={img} alt={`poster of ${name}`} />
-      <p>{description}</p>
+    <div className="a-character comic a-fav">
+      <div className="a-character-details">
+        <p className="name">{name}</p>
+        <div className="display-img">
+          {img ? (
+            <img src={img} alt={`image of ${name}`} />
+          ) : (
+            <p className="no-pic">no picture available</p>
+          )}
+        </div>
+      </div>
+      <p className="description">{description}</p>{" "}
       <button onClick={removeFav}>remove from favorites</button>
     </div>
+    // </div>
   );
 };
 
-export default EachFavorite;
+export default EachFavoriteComics;

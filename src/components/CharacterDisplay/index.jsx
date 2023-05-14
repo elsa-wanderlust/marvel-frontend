@@ -124,7 +124,6 @@ const CharacterDisplay = ({
             icon="mdi:shield-favorite-outline"
             width="30"
             height="30"
-            onClick={updateFav}
           />
         </div>
 
