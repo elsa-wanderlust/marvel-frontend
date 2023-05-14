@@ -3,9 +3,13 @@
 }
 
 .comic p.description {
-  color: red;
+  color: #ed1d24;
   overflow: scroll;
   height: 20%;
+}
+
+.no-pic {
+  color: #ed1d24;
 }
 
 .a-character.comic {

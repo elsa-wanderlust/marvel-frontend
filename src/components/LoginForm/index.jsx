@@ -67,9 +67,9 @@ const LoginForm = ({ setModalVisible, setWhichModal, setToken }) => {
         X
       </button>
       {sumOfLengths === 1 && (
-        <p>
-          we recommend to login so you save your favorites Marvel comics and
-          characters for eternity, AND access them from anywhere on Earth-616 !
+        <p className="first-save-fav">
+          login to save your favorites Marvel for eternity, and access them from
+          anywhere on Earth-616 !
         </p>
       )}
       <h1>Login</h1>

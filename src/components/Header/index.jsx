@@ -99,7 +99,7 @@ const Header = ({
               <button
                 onClick={() => {
                   Cookies.remove("tokenMarvel");
-                  setToken("");
+                  setToken();
                 }}
               >
                 Disconnect

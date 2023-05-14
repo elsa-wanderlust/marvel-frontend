@@ -11,6 +11,7 @@ const AllCharactersDisplay = ({ data, setModalVisible, setWhichModal }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [favCharactersDB, setFavCharactersDB] = useState([]);
   const token = Cookies.get("tokenMarvel");
+  console.log(token);
 
   // FUNCTIONS TO GET ALL THE FAVORITE CHARACTERS
   // in the DB if there is a token = returns MarvelID only

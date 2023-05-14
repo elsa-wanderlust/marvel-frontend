@@ -13,6 +13,7 @@ import Favorites from "./pages/Favorites";
 // IMPORT COMPONENT(S)
 import Header from "./components/Header";
 import Modal from "./components/Modal";
+import Footer from "./components/Footer";
 
 function App() {
   // DECLARE STATE
@@ -64,6 +65,7 @@ function App() {
           setToken={setToken}
         />
       )}
+      <Footer></Footer>
     </Router>
   );
 }

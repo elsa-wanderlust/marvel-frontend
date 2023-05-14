@@ -12,17 +12,7 @@ const PagesByTen = ({
   currentPageNum,
   setCurrentPageNum,
   numberOfPages,
-  limit,
-  setLimit,
 }) => {
-  // when clicking on pageByTen button:
-  // - this button will be selected (for CSS use only)
-  // - we want the first page number of that group to be selected
-  const handlePagesByTenClick = () => {
-    setCurrentPagesByTen(thatPagesbyTen);
-    setCurrentPageNum(thatPagesbyTenContent[0]);
-  };
-
   return (
     <div
       className={
@@ -53,7 +43,6 @@ const PagesByTen = ({
       >
         <Icon icon="ic:round-navigate-next" rotate={2} />
       </button>
-      {/* <button onClick={handlePagesByTenClick}>{pagesByTenName}</button> */}
       {thatPagesbyTenContent.map((elem, index) => {
         return (
           <PagesNumber

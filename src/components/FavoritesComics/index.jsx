@@ -46,7 +46,7 @@ const FavoritesComics = () => {
         <p>page is loading...</p>
       ) : (
         <div>
-          {token && favComicsDB ? (
+          {token && favComicsDB.length > 0 ? (
             <div className="fav-category container">
               <p>My favorite comics</p>
               <div className="all-fav">
@@ -54,10 +54,10 @@ const FavoritesComics = () => {
                   return (
                     <EachFavoriteComics
                       key={elem._id}
-                      _id={elem._id}
+                      _id={elem.marvelId}
                       name={elem.title}
                       description={elem.description}
-                      img={elem.imgComic}
+                      img={elem.img}
                       favComicsDB={favComicsDB}
                       setFavComicsDB={setFavComicsDB}
                     />
@@ -86,7 +86,7 @@ const FavoritesComics = () => {
             </div>
           ) : (
             <p className="container">
-              it seems you don't have any favorite Comics saved yet
+              it seems you don't have any favorite comics saved yet
             </p>
           )}
         </div>

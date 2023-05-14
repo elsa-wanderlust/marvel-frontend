@@ -9,7 +9,7 @@
 }
 
 .modal-container .modal {
-  background-color: #2baeb7;
+  background-color: #ed1d24;
   height: fit-content;
   width: 320px;
   padding: 50px 30px;
@@ -76,7 +76,7 @@ button {
 }
 
 .modal-submit span {
-  color: rgb(172, 5, 5);
+  color: goldenrod
   text-align: center;
 }
 
@@ -100,7 +100,7 @@ button {
   position: absolute;
   top: -5px;
   right: -5px;
-  border: #2baeb7 1px solid;
+  border: #ed1d24 1px solid;
 }
 
 /* AVATAR - SIGNUP FORM ONLY */
